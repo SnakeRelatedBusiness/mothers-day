@@ -31,6 +31,7 @@ def run_mothers_day():
         st.session_state["not_first_load"] = True
         st.balloons()
 
+
     st.title("Happy Mother's Day (2026)!💜", text_alignment="center")
 
     image_data = get_image_data()
