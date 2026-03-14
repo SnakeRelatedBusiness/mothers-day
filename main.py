@@ -5,11 +5,15 @@ import glob
 import base64
 from pathlib import Path
 from time import sleep
+import os
 
-def img_to_b64(path):
-    data = Path(path).read_bytes()
+BASE_DIR = Path(__file__).parent
+
+def img_to_b64(filename):
+    path = BASE_DIR / "static" / filename
+    data = path.read_bytes()
     b64 = base64.b64encode(data).decode()
-    ext = Path(path).suffix.lstrip(".")
+    ext = Path(filename).suffix.lstrip(".")
     return f"data:image/{ext};base64,{b64}"
 
 WELCOME_TEXT = "Happy Mother's Day (2026)!"
@@ -18,7 +22,7 @@ st.set_page_config(page_title=WELCOME_TEXT, layout="wide")
 
 @st.cache_resource
 def get_image_data():
-    images = glob.glob(".\static/*jpg")
+    images = glob.glob(os.path.join(BASE_DIR, "static", "*.jpg"))
     static_data = [img_to_b64(image) for image in images]
     return static_data
 
@@ -32,7 +36,7 @@ def run_mothers_day():
     image_data = get_image_data()
 
     def show_orchid():
-        st.image(img_to_b64(".\static\orchid.png"), use_container_width=True)
+        st.image(img_to_b64(r"orchid.png"), use_container_width=True)
     
     with st.container(border=False, horizontal_alignment="center"):
         left , mid, right = st.columns([1, 4, 1], vertical_alignment="bottom")
