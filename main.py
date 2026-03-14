@@ -35,29 +35,23 @@ def run_mothers_day():
 
     image_data = get_image_data()
 
-    def show_orchid():
-        st.image(img_to_b64(r"orchid.png"), use_container_width=True)
-    
-    with st.container(border=False, horizontal_alignment="center"):
-        left , mid, right = st.columns([1, 4, 1], vertical_alignment="bottom")
 
-        with left:
-            show_orchid()
-        with right:
-            show_orchid()
-        
+
+    with st.container(border=False, horizontal_alignment="center"):
+        _ , mid, _ = st.columns([1, 4, 1], vertical_alignment="bottom")
+
         with mid:
             if not st.session_state.get("selected_image"):
                 st.session_state["selected_image"] = image_data[0]
 
             st.image(st.session_state["selected_image"], use_container_width=True)
-            
-            
+
+
 
     img = image_carousel(image_data,
-                        height=200, 
+                        height=200,
                         key="selected_image")
-    
+
     st.markdown("Dear Mum, hope you have a wonderful mother's day. I love you very much, Daniel x")
 
 
@@ -66,11 +60,11 @@ def validate_mum() -> bool:
         return True
     else:
         quiz_mum()
-    
+
 @st.dialog(title="Checking this is Mum", dismissible=False)
 def quiz_mum():
     ans = st.text_input("What is the first name of your favourite child?")
-    
+
     if not ans.strip():
         st.write(ans.lower())
     elif ans.lower().startswith("catrin"):
@@ -82,11 +76,16 @@ def quiz_mum():
         st.rerun()
     else:
         st.error("Wrong!")
-        
-    
+
+    def show_orchid():
+        st.image(img_to_b64(r"orchid.png"), width=200)
+
+    with st.container(border=False, horizontal_alignment="center"):
+        show_orchid()
+
 def main():
     if validate_mum():
         run_mothers_day()
-        
+
 if __name__ == "__main__":
     main()
