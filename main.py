@@ -22,7 +22,7 @@ st.set_page_config(page_title=WELCOME_TEXT, layout="wide")
 
 @st.cache_resource
 def get_image_data():
-    images = glob.glob(os.path.join(BASE_DIR, "static", "*.jpg"))
+    images = sorted(glob.glob(os.path.join(BASE_DIR, "static", "*.jpg")))
     static_data = [img_to_b64(image) for image in images]
     return static_data
 
