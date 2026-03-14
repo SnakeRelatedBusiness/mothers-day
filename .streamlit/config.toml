@@ -1,0 +1,11 @@
+[server]
+enableStaticServing = true
+
+[client]
+showErrorDetails = "None"
+
+[theme]
+primaryColor = "#4d15ad"
+backgroundColor = "#f1ebf6"
+textColor = "black"
+base = "dark"
