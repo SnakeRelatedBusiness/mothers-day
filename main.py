@@ -20,7 +20,7 @@ WELCOME_TEXT = "Happy Mother's Day (2026)!"
 
 st.set_page_config(page_title=WELCOME_TEXT, layout="wide")
 
-@st.cache_resource
+@st.cache_data
 def get_image_data():
     images = sorted(glob.glob(os.path.join(BASE_DIR, "static", "*.jpg")))
     static_data = [img_to_b64(image) for image in images]
