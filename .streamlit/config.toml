@@ -2,7 +2,7 @@
 enableStaticServing = true
 
 [client]
-showErrorDetails = "None"
+showErrorDetails = "full"
 
 [theme]
 primaryColor = "#4d15ad"
